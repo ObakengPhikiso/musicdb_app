@@ -1,0 +1,12 @@
+<ul class="list-group" *ngFor="let track of tracks">
+    <li class="list-group-item">
+        <div class="row row-cols 2">
+            <div class="col">
+                {{track.title}}
+            </div>
+            <div class="col-3">
+                {{track.duration | convertTime}}
+            </div>
+        </div>
+    </li>
+</ul>
