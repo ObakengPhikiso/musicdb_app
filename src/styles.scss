@@ -4,12 +4,12 @@ body {
   background-color: #211d1d;
 }
 
-.card {
-      background-color: #f1f8fd;
-  position: relative;
-  border-radius: 40px;
-  margin: 30px auto;
-  box-shadow: 20px 20px 30px 0 rgba(0,0,0,0.1);
+.card.custom-card {
+    background-color: #f1f8fd;
+    position: relative;
+    border-radius: 10px;
+    margin: 30px auto;
+    box-shadow: 20px 20px 30px 0 rgba(0,0,0,0.1);
 }
 
 .custom-card {

@@ -7,8 +7,8 @@ import { Artist } from 'src/app/interfaces/artist';
   styleUrls: ['./artist-card.component.scss']
 })
 export class ArtistCardComponent implements OnInit {
-  @Input()
-  artist!: Artist;
+  @Input() artist!: Artist;
+  @Input() artist_view: boolean = false;
 
   constructor() { }
 

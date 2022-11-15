@@ -1,19 +1,21 @@
-<div class="container" *ngIf="top5.length > 0 && albums.length > 0">
-    <h1 class="display-4 text-white">Artist</h1>
-    <hr>
-    <div class="row">
-        <div class="col-7">
-            {{artist.name}}
+<div class="container-fluid">
+
+    <div class="row mt-4">
+        <div class="col-lg-7 col-xl-7 col-sm-12 col-md-12">
+            <app-artist-card [artist]="artist" [artist_view]="true"></app-artist-card>
         </div>
-        <div class="col">
+        <div class="col-lg-5 col-xl-5 col-sm-12 col-md-12">
             <app-top-tracks [tracks]="top5"></app-top-tracks>
         </div>
     </div>
     <hr>
-    <h1 class="display-4 text-white">Albums</h1>
-    <div class="row">
-        <div class="col" *ngFor="let album of albums">
-            <app-album-card [album]="album"></app-album-card>
+    <div class="container" *ngIf="albums.length > 0">
+        <h1 class="display-4 text-white">Albums</h1>
+        <div class="row">
+            <div class="col" *ngFor="let album of albums">
+                <app-album-card [album]="album"></app-album-card>
+            </div>
         </div>
     </div>
+
 </div>

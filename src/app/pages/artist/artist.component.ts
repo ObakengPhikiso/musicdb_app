@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Album } from 'src/app/interfaces/album';
 import { Artist } from 'src/app/interfaces/artist';
 import { Track } from 'src/app/interfaces/track';
@@ -16,13 +16,15 @@ export class ArtistComponent implements OnInit, OnDestroy {
   top5: Track[] = [];
   albums: Album[] = [];
 
-  constructor(private apiService: ApiService, private curRouter: ActivatedRoute) { }
+  constructor(private apiService: ApiService, private curRouter: ActivatedRoute, private router: Router) {
+    this.artist = router.getCurrentNavigation()?.extras.state as Artist;
+  }
 
   ngOnInit(): void {
     this.curRouter.params.subscribe((data: any) => {
       this.artistId = data.id
     });
-    this.getCurrentArtist();
+    if (this.artist === undefined) this.getCurrentArtist();
     this.getTop5Tracks();
     this.getAlbums();
   }
@@ -41,8 +43,10 @@ export class ArtistComponent implements OnInit, OnDestroy {
 
   getAlbums() {
     return this.apiService.getAlbums(this.artistId).subscribe((res: any) => {
-      this.albums.push(...res.data);
-    }, (err: any) => err)
+      const artist_albums: Album[] = res.data;
+      artist_albums.sort((a, b) => new Date(a.release_date).getFullYear() - new Date(b.release_date).getFullYear());
+      this.albums.push(...artist_albums);
+    }, (err) => err)
   }
 
   ngOnDestroy() {

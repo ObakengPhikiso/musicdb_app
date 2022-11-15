@@ -3,5 +3,5 @@ export const environment = {
   production: true,
   baseUrl,
   search: baseUrl + '/search/artist',
-  artists: baseUrl + '/user/2529/artists'
+  artists: baseUrl + '/user/700513741/artists'
 };

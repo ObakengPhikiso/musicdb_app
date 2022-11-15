@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Album } from '../interfaces/album';
 import { Artist } from '../interfaces/artist';
@@ -9,23 +9,37 @@ import { Track } from '../interfaces/track';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class ApiService implements OnDestroy {
   private baseUrl = environment.baseUrl;
-  private artists = environment.artists;
-  private search = environment.search;
+  private artistsUrl = environment.artists;
+  private searchUrl = environment.search;
 
-  constructor(private http: HttpClient) { }
+  private artists$ = new BehaviorSubject<Artist[]>([]);
+  artists = this.artists$.asObservable();
+
+
+  constructor(private http: HttpClient) {
+
+  }
+
+  ngOnDestroy(): void {
+    this.artists$.unsubscribe()
+  }
+
+  setArtists(artists: Artist[]) {
+    this.artists$.next(artists)
+  }
 
   // Get all artist belonging to a specific user
   getAllArtists(): Observable<Artist[]> {
-    return this.http.get<Artist[]>(this.artists)
+    return this.http.get<Artist[]>(this.artistsUrl)
   }
 
   // Get an artist by name
   getArtist(name: string): Observable<Artist> {
-    return this.http.get<Artist>(this.search, { params: { q: name } });
+    return this.http.get<Artist>(this.searchUrl, { params: { q: name } });
   }
-  // Get an artist by name
+  // Get an artist by id
   getArtistById(id: number): Observable<Artist> {
     return this.http.get<Artist>(`${this.baseUrl}/artist/${id}`);
   }
