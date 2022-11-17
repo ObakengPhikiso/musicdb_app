@@ -37,8 +37,9 @@ export class ApiService implements OnDestroy {
 
   // Get an artist by name for search functionality
   getArtist(name: string): Observable<Artist[]> {
-    return this.http.get<Artist[]>(this.searchUrl, { params: { q: name } });
+    return this.http.get<Artist[]>(this.searchUrl + `/${name}`);
   }
+
   // Get an artist by id
   getArtistById(id: number): Observable<Artist> {
     return this.http.get<Artist>(`${this.baseUrl}/artist/${id}`);
@@ -46,7 +47,7 @@ export class ApiService implements OnDestroy {
 
   // Get top 5 tracks of an artist
   getTop5(id: number): Observable<Track[]> {
-    return this.http.get<Track[]>(`${this.baseUrl}/artist/${id}/top`, { params: { limit: 5 } });
+    return this.http.get<Track[]>(`${this.baseUrl}/artist/${id}/top`);
   }
 
   // Get all albums that belongs to an artist

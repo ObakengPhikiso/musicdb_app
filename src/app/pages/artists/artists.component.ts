@@ -33,7 +33,6 @@ export class ArtistsComponent implements OnInit, OnDestroy {
       if (res === undefined) {
         this.getAllArtists()
       } else {
-        res.sort((a, b) => b.nb_fan - a.nb_fan)
         this.artists = [];
         this.artists.push(...res)
       }

@@ -1,7 +1,7 @@
-const baseUrl = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com';
+const baseUrl = 'https://musicdb-proxy-server.vercel.app/v1';
 export const environment = {
   production: true,
   baseUrl,
-  search: baseUrl + '/search/artist',
-  artists: baseUrl + '/user/700513741/artists'
+  search: baseUrl + '/search/artists',
+  artists: baseUrl + '/artists/700513741'
 };
