@@ -1,5 +1,4 @@
 <div class="container-fluid">
-
     <div class="row mt-4">
         <div class="col-lg-7 col-xl-7 col-sm-12 col-md-12">
             <app-artist-card [artist]="artist" [artist_view]="true"></app-artist-card>
@@ -8,7 +7,7 @@
             <app-top-tracks [tracks]="top5"></app-top-tracks>
         </div>
     </div>
-    <hr>
+
     <div class="container" *ngIf="albums.length > 0">
         <h1 class="display-4 text-white">Albums</h1>
         <div class="row">

@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<div class="card" *ngIf="artist && artist_view">
+<div class="card" id="artist-card" *ngIf="artist && artist_view">
     <img [src]="artist.picture_xl" class="card-img-top">
     <div class="card-img-overlay text-white">
         <h1 class="card-title display-5">{{artist.name}}</h1>

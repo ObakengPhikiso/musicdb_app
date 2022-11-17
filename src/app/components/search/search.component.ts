@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { Artist } from 'src/app/interfaces/artist';
 import { ApiService } from 'src/app/services/api.service';
@@ -16,7 +17,7 @@ export class SearchComponent implements OnInit {
     search: new FormControl('')
   })
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private router: Router) {
     this.search()
   }
 
@@ -29,6 +30,11 @@ export class SearchComponent implements OnInit {
       const artists: Artist[] = data.data;
       this.apiService.setArtists(artists);
     })
+  }
+
+  onClick() {
+    const currUrl: string = this.router.url;
+    if (currUrl !== '/') this.router.navigateByUrl('/');
   }
   ngOnInit(): void {
   }

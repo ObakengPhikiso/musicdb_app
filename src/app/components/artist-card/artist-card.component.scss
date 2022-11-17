@@ -1,5 +1,9 @@
-.card-img-top {
-width: 100%;
-height: 30vh;
-object-fit: cover;
+#artist-card {
+    height: 30vh !important;
+
+   & .card-img-top {
+        min-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+}
 }

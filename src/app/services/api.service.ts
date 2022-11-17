@@ -35,9 +35,9 @@ export class ApiService implements OnDestroy {
     return this.http.get<Artist[]>(this.artistsUrl)
   }
 
-  // Get an artist by name
-  getArtist(name: string): Observable<Artist> {
-    return this.http.get<Artist>(this.searchUrl, { params: { q: name } });
+  // Get an artist by name for search functionality
+  getArtist(name: string): Observable<Artist[]> {
+    return this.http.get<Artist[]>(this.searchUrl, { params: { q: name } });
   }
   // Get an artist by id
   getArtistById(id: number): Observable<Artist> {
